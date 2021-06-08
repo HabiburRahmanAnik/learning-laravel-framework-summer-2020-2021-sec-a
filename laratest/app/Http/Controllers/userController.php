@@ -12,7 +12,6 @@ class userController extends Controller {
 
     //add user
     public function addUser( Request $req ) {
-
         $users = $this->getUsers();
         $user = [
             'id'       => $req->id,
@@ -53,7 +52,6 @@ class userController extends Controller {
     //edit user
     public function editUser( Request $req, $id ) {
         $users = $this->getUsers();
-
         $user = [
             'id'       => $req->id,
             'name'     => $req->name,
@@ -61,9 +59,13 @@ class userController extends Controller {
             'email'    => $req->email,
         ];
 
-        array_push( $users, $user );
+        foreach ( $users as $value ) {
+            if ( $value['id'] == $id ) {
+                $users[$id -1] = $user;
+                break;
+            }
+        }
         return view( 'user.userlist' )->with( 'userlist', $users );
-
     }
 
     //delete user
@@ -86,12 +88,12 @@ class userController extends Controller {
     }
 
     public function getUsers() {
-        return  [
+        return [
             ['id' => '1', 'name' => 'habib', 'username' => 'habibur', 'email' => 'email@email.com', 'type' => 'admin', 'password' => '123'],
             ['id' => '2', 'name' => 'xy', 'username' => 'xyx', 'email' => 'xyx@email.com', 'type' => 'admin', 'password' => '123'],
             ['id' => '3', 'name' => 'wx', 'username' => 'wxy', 'email' => 'wxy@email.com', 'type' => 'admin', 'password' => '123'],
         ];
-        
+
     }
 
 }

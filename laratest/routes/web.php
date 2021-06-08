@@ -24,20 +24,12 @@ Route::get('/', function () {
 // Route::get('/login',['uses'=>'loginController@index']); v 6-7
 // Route::get('/login', [loginController::class,'index']);
 
-//login
 Route::get('/login','loginController@index');
 Route::post('/login','loginController@verify');
-
-//home page
 Route::get('/home','HomeController@index');
-
-//logout
 Route::get('/logout','LogoutController@logout');
-
-//registration
 Route::get('/register','registerController@index');
 Route::post('/register','RegisterController@regCheck');
-
 Route::get('/user/addUser','userController@index');
 Route::post('/user/addUser','userController@addUser');
 Route::get('/user/userlist','userController@userlist');
